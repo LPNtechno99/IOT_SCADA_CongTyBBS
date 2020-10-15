@@ -1,0 +1,142 @@
+﻿<Window x:Class="SCADA_IOT_CompanyBBS.SCADA"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCADA_IOT_CompanyBBS"
+        mc:Ignorable="d"
+        Title="SCADA-IOT" Height="980" Width="1920" WindowStartupLocation="CenterScreen"
+        x:Name="wdSCADA">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Border Style="{DynamicResource BorderStyle}" Background="{StaticResource InputBackgroundBrush}">
+            <Grid>
+                <Menu Style="{DynamicResource MenuStyle}" Margin="80 0 0 0">
+                    <MenuItem Header="MACHINE" FontSize="18" FontWeight="Bold" 
+                          Style="{DynamicResource MenuItemStyle}">
+                        <MenuItem Header="Machine 01" FontSize="16"/>
+                        <Separator/>
+                        <MenuItem Header="Machine 02" FontSize="16"/>
+                    </MenuItem>
+                    <MenuItem Header="DATA" FontSize="18" FontWeight="Bold"
+                          Style="{DynamicResource MenuItemStyle}">
+                        <MenuItem Header="Chart" FontSize="16"/>
+                        <Separator/>
+                        <MenuItem Header="Save" FontSize="16"/>
+                    </MenuItem>
+                    <MenuItem Header="SETTINGS" FontSize="18" FontWeight="Bold"
+                          Style="{DynamicResource MenuItemStyle}">
+                        <MenuItem Header="User" FontSize="16"/>
+                        <Separator/>
+                        <MenuItem Header="Config" FontSize="16"/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Style="{DynamicResource BorderStyle}">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel>
+                    <Viewbox Stretch="Uniform" Height="200" ToolTip="CNC Milling 01" Margin="0 50 0 0" 
+                             DockPanel.Dock="Top" Tag="1" PreviewMouseDown="Viewbox_PreviewMouseDown" >
+                        <Canvas Tag="#00000000,#FF008000,Original,0,None" LayoutTransform="Identity" Width="957" Height="999">
+                            <Polygon Points="171,785 785,785 785,949 171,949 171,785" Fill="#FF101011" />
+                            <Polygon Points="171,949 233,949 233,970 171,970 171,949" Fill="#FF06070A" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polygon Points="723,949 785,949 785,970 723,970 723,949" Fill="#FF17191B" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polygon Points="28,704 929,704 929,785 28,785 28,704" Fill="#FF16181B" />
+                            <Polygon Points="28,111 929,111 929,703 28,703 28,111" Fill="#FFCCCCCC" />
+                            <Polygon Points="28,111 929,111 910,28 46,28 28,111" Fill="#FFE5E5E5" />
+                            <Polygon Points="376,908 437,908 437,929 376,929 376,908" Fill="#FF333333" />
+                            <Polygon Points="520,908 580,908 580,929 520,929 520,908" Fill="#FF333333" />
+                            <Polygon Points="28,510 929,233 929,704 28,704 28,510" Fill="#FFC7C7C7" />
+                            <Polygon Points="28,538 929,261 929,704 28,704 28,538" Fill="#FFC2C2C2" />
+                            <Polygon Points="28,580 929,303 929,704 28,704 28,580" Fill="#FFBDBDBD" />
+                            <Polyline Points="704,150 704,601 254,601" Stroke="#FFFFFFFF" StrokeThickness="3" />
+                            <Polyline Points="704,150 254,150 254,601" Stroke="#FF999999" StrokeThickness="3" />
+                            <Polygon Points="48,275 192,275 192,397 48,397 48,275" Fill="#FF222325" />
+                            <Polygon Points="448,376 458,376 458,540 448,540 448,376" Fill="#FFFFB27F" Stroke="#FFFF6600" StrokeThickness="3" />
+                            <Polygon Points="499,376 508,376 508,540 499,540 499,376" Fill="#FFFFB27F" Stroke="#FFFF6600" StrokeThickness="3" />
+                            <Polyline Points="478,601 478,150" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polygon Points="570,520 550,499 550,213 570,192 631,192 652,213 652,499 631,520 570,520" Fill="#FF999999" />
+                            <Polygon Points="335,520 314,499 314,213 335,192 397,192 418,213 418,499 397,520 335,520" Fill="#FF999999" />
+                            <Polyline Points="652,213 652,499 631,520 570,520" Stroke="#FFFFFFFF" StrokeThickness="3" />
+                            <Polyline Points="416,213 416,499 395,520 335,520" Stroke="#FFFFFFFF" StrokeThickness="3" />
+                            <Polyline Points="335,520 314,499 314,213 335,192 397,192 418,213" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polyline Points="570,520 550,499 550,213 570,192 631,192 652,213" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polyline Points="46,28 910,28 929,109 929,785 28,785 28,109 46,28" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polygon Points="171,785 785,785 785,816 171,816 171,785" Fill="#FF191A1D" />
+                            <Polygon Points="365,816 591,816 591,889 365,889 365,816" Fill="#FF212732" />
+                            <Polyline Points="171,785 785,785 785,949 171,949 171,785" Stroke="#FF000000" StrokeThickness="3" />
+                            <Polygon Points="488,243 520,243 520,346 488,346 488,243" Fill="#FF000000" />
+                            <Polygon Points="497,346 488,337 488,324 497,314 510,314 520,324 520,337 510,346 497,346" Fill="#FFFF0000" />
+                            <Polygon Points="723,207 776,207 776,284 723,284 723,207" Fill="#FF151512" />
+                            <Polygon Points="723,150 776,150 776,162 723,162 723,150" Fill="#FF23221E" />
+                            <Polygon Points="69,365 171,365 171,386 69,386 69,365" Fill="#FF999999" />
+                            <Polygon Points="222,836 314,836 314,908 222,908 222,836" Fill="#FF000000" />
+                            <Polyline Points="222,908 222,836 314,836" Stroke="#FFFFFFFF" StrokeThickness="3" />
+                            <Polyline Points="314,836 314,908 222,908" Stroke="#FF999999" StrokeThickness="3" />
+                        </Canvas>
+                    </Viewbox>
+                    <Grid Margin="0 5 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="MACHINE 01" VerticalContentAlignment="Center" 
+                               HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" 
+                               Grid.ColumnSpan="2" Template="{StaticResource LabelTemplateMachine}" />
+                        <Ellipse Height="20" Style="{DynamicResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="1" Style="{DynamicResource EllipseStyle}"/>
+                        <Ellipse Grid.Row="2" Style="{DynamicResource EllipseStyle}"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Content="Status: " Background="#FF2F47B4"
+                               Template="{StaticResource LabelTemplateNormal}" />
+                        <Label Grid.Column="1" Grid.Row="1" Content="Status Door: " Background="#FF2F47B4" 
+                                   Template="{StaticResource LabelTemplateNormal}"/>
+                        <Label Grid.Column="1" Grid.Row="2" Content="Warning: " Background="#FF2F47B4"
+                                   Template="{StaticResource LabelTemplateNormal}"/>
+
+                        <Label Grid.Column="2" Grid.Row="0" 
+                               Template="{StaticResource LabelTemplateShowData}"/>
+                        <Label Grid.Column="2" Grid.Row="1" 
+                               Template="{StaticResource LabelTemplateShowData}"/>
+                        <Label Grid.Column="2" Grid.Row="2" 
+                               Template="{StaticResource LabelTemplateShowData}"/>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Background="{DynamicResource InputBackgroundBrush}">
+            
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1231
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCADA_IOT_CompanyBBS", "SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS.csproj", "{72F71FC4-EB9E-458E-95FB-314402B79F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCADA_BBS_Lib", "SCADA_BBS_Lib\SCADA_BBS_Lib.csproj", "{6681EE02-9308-49B0-AA2A-DCB21D2307A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72F71FC4-EB9E-458E-95FB-314402B79F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F71FC4-EB9E-458E-95FB-314402B79F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F71FC4-EB9E-458E-95FB-314402B79F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F71FC4-EB9E-458E-95FB-314402B79F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6681EE02-9308-49B0-AA2A-DCB21D2307A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6681EE02-9308-49B0-AA2A-DCB21D2307A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6681EE02-9308-49B0-AA2A-DCB21D2307A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6681EE02-9308-49B0-AA2A-DCB21D2307A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2515748-1A5B-4BFF-9BD5-EDA8E05FE42E}
+	EndGlobalSection
+EndGlobal
