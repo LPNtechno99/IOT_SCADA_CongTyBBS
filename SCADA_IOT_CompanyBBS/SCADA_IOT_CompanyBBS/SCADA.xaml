@@ -8,6 +8,9 @@
         Title="SCADA-IOT" Height="980" Width="1920" WindowStartupLocation="CenterScreen"
         x:Name="wdSCADA">
     <Window.Resources>
+        <local:ColorMachineState x:Key="ColorMachineState"/>
+        <local:ColorDoorState x:Key="ColorDoorState"/>
+        <local:FailingColor x:Key="FailingColor"/>
 
     </Window.Resources>
     <Grid>
@@ -113,30 +116,43 @@
                         <Label Content="MACHINE 01" VerticalContentAlignment="Center" 
                                HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" 
                                Grid.ColumnSpan="2" Template="{StaticResource LabelTemplateMachine}" />
-                        <Ellipse Height="20" Style="{DynamicResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="1" Style="{DynamicResource EllipseStyle}"/>
-                        <Ellipse Grid.Row="2" Style="{DynamicResource EllipseStyle}"/>
+                        <Ellipse Height="20" Style="{DynamicResource EllipseStyle}" 
+                                 Name="elp1" Fill="{Binding MachineState, Converter={StaticResource ColorMachineState}}"/>
+                        <Ellipse Grid.Row="1" Style="{DynamicResource EllipseStyle}" 
+                                 Name="elp2" Fill="{Binding DoorState, Converter={StaticResource ColorDoorState}}"/>
+                        
 
-                        <Label Grid.Column="1" Grid.Row="0" Content="Status: " Background="#FF2F47B4"
-                               Template="{StaticResource LabelTemplateNormal}" />
-                        <Label Grid.Column="1" Grid.Row="1" Content="Status Door: " Background="#FF2F47B4" 
-                                   Template="{StaticResource LabelTemplateNormal}"/>
-                        <Label Grid.Column="1" Grid.Row="2" Content="Warning: " Background="#FF2F47B4"
-                                   Template="{StaticResource LabelTemplateNormal}"/>
+                        <Label Grid.Column="1" Grid.Row="0" Content="Status: " Background="#FF2F47B4" FontSize="14"
+                               Template="{StaticResource LabelTemplateNormal}" HorizontalAlignment="Left" Width="100"/>
+                        <Label Grid.Column="1" Grid.Row="1" Content="Status Door: " Background="#FF2F47B4" FontSize="14"
+                                   Template="{StaticResource LabelTemplateNormal}" HorizontalAlignment="Left" Width="100"/>
+                        <Label Grid.Column="1" Grid.Row="2" Content="Warning: " Background="#FF2F47B4" FontSize="14"
+                                   Template="{StaticResource LabelTemplateNormal}" HorizontalAlignment="Left" Width="100"/>
 
                         <Label Grid.Column="2" Grid.Row="0" 
-                               Template="{StaticResource LabelTemplateShowData}"/>
+                               Template="{StaticResource LabelTemplateShowData}" 
+                               Content="{Binding MachineState, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Grid.Column="2" Grid.Row="1" 
-                               Template="{StaticResource LabelTemplateShowData}"/>
-                        <Label Grid.Column="2" Grid.Row="2" 
-                               Template="{StaticResource LabelTemplateShowData}"/>
+                               Template="{StaticResource LabelTemplateShowData}" 
+                               Content="{Binding DoorState, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Column="2" Grid.Row="2" x:Name="lblWarning"
+                               Background="Blue"/>
                     </Grid>
                 </DockPanel>
+                
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <CheckBox x:Name="chbGreen" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">Green</CheckBox>
+                    <CheckBox x:Name="chbYellow" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">Yellow</CheckBox>
+                    <CheckBox x:Name="chbRed" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">Red</CheckBox>
+                    <TextBlock Text="{Binding MachineState, UpdateSourceTrigger=PropertyChanged}" 
+                               Background="Gray" Foreground="Black" FontSize="20" FontWeight="Bold" 
+                               TextAlignment="Center"/>
+                </StackPanel>
             </Grid>
         </Border>
 
         <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Background="{DynamicResource InputBackgroundBrush}">
-            
+
         </Border>
     </Grid>
 </Window>

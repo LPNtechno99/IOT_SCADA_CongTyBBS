@@ -37,13 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors">
-      <HintPath>..\..\..\..\MyProject\MyLibrary\MaterialDesignColors.dll</HintPath>
+      <HintPath>..\..\..\..\MyProject\MyLibrary\Lib_MaterialWPF\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf">
-      <HintPath>..\..\..\..\MyProject\MyLibrary\MaterialDesignThemes.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\MyProject\MyLibrary\Lib_MaterialWPF\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,12 +63,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdvantechHttpWebUtility.cs" />
+    <Compile Include="ColorChange.cs" />
+    <Compile Include="ObjectMappingJSON.cs" />
+    <Compile Include="Machine.cs" />
     <Compile Include="Machines\wdMachineDetail.xaml.cs">
       <DependentUpon>wdMachineDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotyfiPropertyChangedBase.cs" />
     <Compile Include="SCADA02.xaml.cs">
       <DependentUpon>SCADA02.xaml</DependentUpon>
     </Compile>
+    <Compile Include="URL.cs" />
     <Compile Include="UserControlMenuItem.xaml.cs">
       <DependentUpon>UserControlMenuItem.xaml</DependentUpon>
     </Compile>
@@ -126,7 +133,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\tgBtn_default.png" />

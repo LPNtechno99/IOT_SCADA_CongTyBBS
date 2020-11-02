@@ -3,6 +3,22 @@
                     xmlns:local="clr-namespace:SCADA_IOT_CompanyBBS.ResourcesDic">
 
 
+    <!--Hieu ung Blink Label-->
+    <Storyboard x:Key="FlashMe" RepeatBehavior="Forever">
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+            <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Collapsed</Visibility>
+                </DiscreteObjectKeyFrame.Value>
+            </DiscreteObjectKeyFrame>
+            <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Visible</Visibility>
+                </DiscreteObjectKeyFrame.Value>
+            </DiscreteObjectKeyFrame>
+        </ObjectAnimationUsingKeyFrames>
+    </Storyboard>
+    
     <!-- The Panel Gradient Brush is used as the background for the panels such as the Details Panel -->
     <LinearGradientBrush x:Key="PanelGradientBrush" StartPoint="0.0337444,0.5" EndPoint="1.24881,0.5">
         <GradientStop Color="#FFEFF6FF" Offset="0" />
@@ -97,13 +113,15 @@
     <ControlTemplate x:Key="LabelTemplateNormal" TargetType="{x:Type Label}">
         <Grid>
             <Border BorderThickness="1" BorderBrush="White">
-                <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                <StackPanel Background="{TemplateBinding Background}">
                     <!--<Ellipse Margin="5 0 0 0" Width="15" Height="15" Fill="#FF72DE72"/>-->
                     <!--<Rectangle Fill="#FF2F47B4" Height="45"></Rectangle>-->
                 </StackPanel>
             </Border>
-            <ContentPresenter Content="{TemplateBinding Content}" Margin="5 0 0 0" VerticalAlignment="Center" TextBlock.Foreground="White" TextBlock.FontFamily="Arial"
-                                  TextBlock.FontWeight="Bold" TextBlock.FontSize="14" TextBlock.TextAlignment="Center"/>
+            <ContentPresenter Content="{TemplateBinding Content}" Margin="10 0 0 0" VerticalAlignment="Center" 
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                              TextBlock.Foreground="White" TextBlock.FontFamily="Arial"
+                              TextBlock.FontWeight="Bold" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.TextAlignment="Center"/>
         </Grid>
     </ControlTemplate>
 
@@ -114,10 +132,10 @@
                 <StackPanel Background="#FF4E9FD6" Orientation="Horizontal"/>
             </Border>
             <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" TextBlock.Foreground="White" TextBlock.FontFamily="Open Sans" 
-                              TextBlock.FontWeight="Bold" TextBlock.FontSize="14"/>
+                              TextBlock.FontWeight="Bold" TextBlock.FontSize="14" TextBlock.TextAlignment="Center"/>
         </Grid>
     </ControlTemplate>
-    
+
     <!--Control Template Label Machine-->
     <ControlTemplate x:Key="LabelTemplateMachine" TargetType="{x:Type Label}">
         <Grid>
@@ -129,6 +147,20 @@
         </Grid>
     </ControlTemplate>
 
+    <Style x:Key="myLamp" TargetType="{x:Type Label}">
+        <Setter Property="Template" Value="{StaticResource LabelTemplateShowData}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=ColorState}" Value="0">
+                <Setter Property="Template" Value="{StaticResource LabelRunning}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ColorState}" Value="1">
+                <Setter Property="Template" Value="{StaticResource LabelStopping}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ColorState}" Value="2">
+                <Setter Property="Template" Value="{StaticResource LabelFailing}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     
     <!--TreeView Style-->
     <Style x:Key="TreeViewStyle" TargetType="{x:Type TreeView}">

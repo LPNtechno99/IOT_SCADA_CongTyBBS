@@ -23,5 +23,10 @@ namespace SCADA_IOT_CompanyBBS.Machines
         {
             InitializeComponent();
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

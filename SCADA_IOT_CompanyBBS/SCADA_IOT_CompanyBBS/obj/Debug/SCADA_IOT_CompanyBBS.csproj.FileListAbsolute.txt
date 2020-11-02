@@ -21,6 +21,7 @@ D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\bi
 D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\UserControlMenuItem.g.cs
 D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\UserControlMenuItem.baml
 D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\SCADA_IOT_CompanyBBS.csproj.CopyComplete
-D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\SCADA_IOT_CompanyBBS.csprojAssemblyReference.cache
 D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\Machines\wdMachineDetail.g.cs
 D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\Machines\wdMachineDetail.baml
+D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\SCADA_IOT_CompanyBBS.csprojAssemblyReference.cache
