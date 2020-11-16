@@ -52,5 +52,32 @@ namespace SCADA_IOT_CompanyBBS
                 OnPropertyChanged("MachineState");
             }
         }
+
+        public enum ListMachine
+        {
+            MACHINE01,
+            MACHINE02,
+            MACHINE03,
+            MACHINE04,
+            MACHINE05,
+            MACHINE06,
+            MACHINE07,
+            MACHINE08,
+            MACHINE09,
+            MACHINE10,
+            MACHINE11,
+            MACHINE12,
+            MACHINE13,
+            MACHINE14,
+        }
+        private static ListMachine _nameMachine;
+        public static ListMachine NameMachine
+        {
+            get { return _nameMachine; }
+            set
+            {
+                _nameMachine = value;
+            }
+        }
     }
 }

@@ -1,0 +1,92 @@
+﻿<Window x:Class="SCADA_IOT_CompanyBBS.wdChonCa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCADA_IOT_CompanyBBS"
+        mc:Ignorable="d"
+        Title="wdChonCa" Height="250" Width="500" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <RoutedUICommand x:Key="myCommandF1" Text="text"/>
+        <RoutedUICommand x:Key="myCommandF2" Text="text"/>
+        <RoutedUICommand x:Key="myCommandF3" Text="text"/>
+        <RoutedUICommand x:Key="myCommandEsc" Text="text"/>
+        <RoutedUICommand x:Key="myCommandENTER" Text="text"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{StaticResource myCommandF1}"/>
+        <KeyBinding Key="F2" Command="{StaticResource myCommandF2}"/>
+        <KeyBinding Key="F3" Command="{StaticResource myCommandF3}"/>
+        <KeyBinding Key="Esc" Command="{StaticResource myCommandEsc}"/>
+        <KeyBinding Key="Return" Command="{StaticResource myCommandENTER}"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource myCommandF1}" Executed="EventF1Push"/>
+        <CommandBinding Command="{StaticResource myCommandF2}" Executed="EventF2Push"/>
+        <CommandBinding Command="{StaticResource myCommandF3}" Executed="EventF3Push"/>
+        <CommandBinding Command="{StaticResource myCommandEsc}" Executed="EventEscPush"/>
+        <CommandBinding Command="{StaticResource myCommandENTER}" Executed="EventENTERPush"/>
+    </Window.CommandBindings>
+    <Grid Background="#FF5FB5F1">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="White" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Template="{StaticResource LabelTemplate}" 
+                       Background="#FF2546B8" Content="CA HIỆN TẠI" Foreground="White" FontSize="16"/>
+                <Label Grid.Column="0" Grid.Row="1" Template="{StaticResource LabelTemplate}" 
+                       Background="#FF2546B8" Content="CA 1" Foreground="White" Name="lblCa1"/>
+                <Label Grid.Column="0" Grid.Row="2" Template="{StaticResource LabelTemplate}" 
+                       Background="#FF2546B8" Content="CA 2" Foreground="White" Name="lblCa2"/>
+                <Label Grid.Column="0" Grid.Row="3" Template="{StaticResource LabelTemplate}" 
+                       Background="#FF2546B8" Content="CA 3" Foreground="White" Name="lblCa3"/>
+                
+                <Label Grid.Column="1" Grid.Row="0" Template="{StaticResource LabelTemplateNormal}" 
+                       Background="#FF2546B8" Content="Từ" Foreground="White"/>
+                <Label Grid.Column="2" Grid.Row="0" Template="{StaticResource LabelTemplateNormal}" 
+                       Background="#FF2546B8" Content="Đến" Foreground="White"/>
+
+                <Label Grid.Column="1" Grid.Row="1" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblFrom1"/>
+                <Label Grid.Column="1" Grid.Row="2" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblFrom2"/>
+                <Label Grid.Column="1" Grid.Row="3" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblFrom3"/>
+                <Label Grid.Column="2" Grid.Row="1" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblTo1"/>
+                <Label Grid.Column="2" Grid.Row="2" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblTo2"/>
+                <Label Grid.Column="2" Grid.Row="3" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblTo3"/>
+
+                <Label Grid.Column="3" Grid.Row="0" Template="{StaticResource LabelTemplateNormal}" 
+                       Background="#FF2546B8" Content="Tổng" Foreground="White"/>
+                <Label Grid.Column="3" Grid.Row="1" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblTongThoiGianCa1"/>
+                <Label Grid.Column="3" Grid.Row="2" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblTongThoiGianCa2"/>
+                <Label Grid.Column="3" Grid.Row="3" Template="{StaticResource LabelTemplate}" 
+                       Background="White" Foreground="Black" Content="..." FontSize="20" Name="lblTongThoiGianCa3"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2">
+            <Label Template="{StaticResource LabelTemplate}" Content="Ấn ENTER để tiếp tục" 
+                   Foreground="White" FontSize="18" Background="#FF84B965"/>
+        </Border>
+    </Grid>
+</Window>

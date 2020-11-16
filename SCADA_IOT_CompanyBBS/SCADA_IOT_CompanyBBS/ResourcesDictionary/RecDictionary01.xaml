@@ -65,7 +65,7 @@
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
     <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
     <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
-    <SolidColorBrush x:Key="ApproxBorderBrush" Color="Fuchsia" />
+    <SolidColorBrush x:Key="ApproxBorderBrush" Color="#FF4A6CB6" />
 
     <!-- This is a color setting for text -->
     <SolidColorBrush x:Key="FontColor" Color="#FF1F3066" />
@@ -105,22 +105,22 @@
         <Setter Property="Height" Value="20"/>
         <Setter Property="Width" Value="20"/>
         <Setter Property="Stroke" Value="#FF231C1C"/>
-        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="StrokeThickness" Value="0.5"/>
         <Setter Property="Fill" Value="#FFA8B2AA"/>
     </Style>
 
     <!--Control Template Label normal-->
     <ControlTemplate x:Key="LabelTemplateNormal" TargetType="{x:Type Label}">
         <Grid>
-            <Border BorderThickness="1" BorderBrush="White">
-                <StackPanel Background="{TemplateBinding Background}">
+            <Border BorderThickness="0.8" BorderBrush="Black">
+                <StackPanel Background="#FF182B80">
                     <!--<Ellipse Margin="5 0 0 0" Width="15" Height="15" Fill="#FF72DE72"/>-->
                     <!--<Rectangle Fill="#FF2F47B4" Height="45"></Rectangle>-->
                 </StackPanel>
             </Border>
             <ContentPresenter Content="{TemplateBinding Content}" Margin="10 0 0 0" VerticalAlignment="Center" 
                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
-                              TextBlock.Foreground="White" TextBlock.FontFamily="Arial"
+                              TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="Arial"
                               TextBlock.FontWeight="Bold" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.TextAlignment="Center"/>
         </Grid>
     </ControlTemplate>
@@ -128,8 +128,8 @@
     <!--Control Template Label Show Data-->
     <ControlTemplate x:Key="LabelTemplateShowData" TargetType="{x:Type Label}">
         <Grid>
-            <Border BorderThickness="1" BorderBrush="White">
-                <StackPanel Background="#FF4E9FD6" Orientation="Horizontal"/>
+            <Border BorderThickness="0.8" BorderBrush="Black">
+                <StackPanel Background="#FF59C398" Orientation="Horizontal"/>
             </Border>
             <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" TextBlock.Foreground="White" TextBlock.FontFamily="Open Sans" 
                               TextBlock.FontWeight="Bold" TextBlock.FontSize="14" TextBlock.TextAlignment="Center"/>
@@ -139,11 +139,22 @@
     <!--Control Template Label Machine-->
     <ControlTemplate x:Key="LabelTemplateMachine" TargetType="{x:Type Label}">
         <Grid>
-            <Border BorderThickness="1" BorderBrush="#FFFFFF">
+            <Border BorderThickness="0.8" BorderBrush="Black">
                 <StackPanel Background="#FFA60CA6" Orientation="Horizontal"></StackPanel>
             </Border>
             <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" TextBlock.Foreground="White" TextBlock.FontFamily="Arial"
                                   TextBlock.FontWeight="Bold" TextBlock.FontSize="26" TextBlock.TextAlignment="Center"/>
+        </Grid>
+    </ControlTemplate>
+
+    <!--Control Template Label Machine-->
+    <ControlTemplate x:Key="LabelTemplate" TargetType="{x:Type Label}">
+        <Grid>
+            <Border BorderThickness="0.8" BorderBrush="Black">
+                <StackPanel Background="{TemplateBinding Background}" Orientation="Horizontal"></StackPanel>
+            </Border>
+            <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" TextBlock.Foreground="{TemplateBinding Foreground}" TextBlock.FontFamily="Arial"
+                                  TextBlock.FontWeight="Bold" TextBlock.FontSize="{TemplateBinding FontSize}" TextBlock.TextAlignment="Center"/>
         </Grid>
     </ControlTemplate>
 

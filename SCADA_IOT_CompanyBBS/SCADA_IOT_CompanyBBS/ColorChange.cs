@@ -43,7 +43,7 @@ namespace SCADA_IOT_CompanyBBS
             {
                 if((Machine.MachineDoorStatus)value==Machine.MachineDoorStatus.OPEN)
                 {
-                    return new SolidColorBrush(Color.FromRgb(243, 112, 63));
+                    return new SolidColorBrush(Color.FromRgb(255, 100, 63));
                 }
                 if((Machine.MachineDoorStatus)value == Machine.MachineDoorStatus.CLOSE)
                 {

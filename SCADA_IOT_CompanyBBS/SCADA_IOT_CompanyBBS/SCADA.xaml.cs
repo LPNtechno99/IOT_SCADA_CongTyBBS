@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using SCADA_IOT_CompanyBBS.Models;
 
 namespace SCADA_IOT_CompanyBBS
 {
@@ -30,10 +31,12 @@ namespace SCADA_IOT_CompanyBBS
         AdvantechHttpWebUtility m_httpRequest12;
         //Thread m_threadLayDuLieu;
         public ObservableCollection<Machine> MachineCollection;
-        Machine _Machine01;
-        Machine _Machine02;
+
+        public static Machine _Machine01;
+        public static Machine _Machine02;
 
         DispatcherTimer timer;
+
         public SCADA()
         {
             InitializeComponent();
@@ -42,6 +45,7 @@ namespace SCADA_IOT_CompanyBBS
             m_httpRequest12.RequestResponded += OnGetRequestData12;
             m_httpRequest12.RequestOccurredError += OnGetErrorRequest12;
 
+
             _Machine01 = new Machine();
             _Machine02 = new Machine();
 
@@ -49,7 +53,25 @@ namespace SCADA_IOT_CompanyBBS
             MachineCollection.Add(_Machine01);
             MachineCollection.Add(_Machine02);
 
-            DataContext = MachineCollection;
+            this.lblStatus01.DataContext = _Machine01;
+            this.lblStattusDoor01.DataContext = _Machine01;
+            this.elpStatus01.DataContext = _Machine01;
+            this.elpStatusDoor01.DataContext = _Machine01;
+            this.lblMachine01.DataContext = _Machine01;
+
+            this.lblStatus02.DataContext = _Machine02;
+            this.lblStattusDoor02.DataContext = _Machine02;
+            this.elpStatus02.DataContext = _Machine02;
+            this.elpStatusDoor02.DataContext = _Machine02;
+            this.lblMachine02.DataContext = _Machine02;
+
+            this.lblCaLamViec.DataContext = CaLamViec.Instance();
+
+            //Lấy id cuối cùng trong bảng ghi dữ liệu
+            using (var db = new DbScadaContext())
+            {
+
+            }
 
             //m_threadLayDuLieu = new Thread(RequestStatusMachine);
             //m_threadLayDuLieu.Start();
@@ -58,7 +80,7 @@ namespace SCADA_IOT_CompanyBBS
             //timer blink
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
             timer.Start();
         }
         private async void Asyn12()
@@ -83,21 +105,134 @@ namespace SCADA_IOT_CompanyBBS
         {
 
         }
-
-        private void OnGetRequestData12(string raw_data)
+        bool _flagChay01, _flagDung01;
+        int _id1 = 1, _id2 = 1;
+        private async void OnGetRequestData12(string raw_data)
         {
             var value = AdvantechHttpWebUtility.ParserJsonToObj<ObjectMappingJSON>(raw_data);
+
+            //máy 1
             if (value.DIVal[0].Val == 1)
             {
                 _Machine01.MachineState = Machine.Machine3State.RUNNING;
+                if (!_flagChay01)
+                {
+                    using (var db = new DbScadaContext())
+                    {
+                        var check = db.ThoiGianDungMay01
+                            .FirstOrDefault(x => x.ID == _id2);
+                        if (check != null)
+                        {
+                            check.To = DateTime.Now.ToString("HH:mm:ss");
+                            var period = Convert.ToDateTime(check.To).Subtract(Convert.ToDateTime(check.From));
+                            check.PeriodTime = period.ToString();
+
+                            await db.SaveChangesAsync();
+                            _id2++;
+                        }
+                    }
+                }
+                if (!_flagChay01)
+                {
+                    _flagChay01 = true;
+                    _flagDung01 = false;
+                    using (var db = new DbScadaContext())
+                    {
+                        int idMax=0;
+                        try
+                        {
+                            idMax = db.ThoiGianChayMay01
+                                .Max(x => x.ID);
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            idMax = 0;
+                        }
+                        if (idMax != 0)
+                        {
+                            var check = db.ThoiGianChayMay01
+                                .FirstOrDefault(x => x.ID == idMax);
+                            if (check.To == null)
+                            {
+                                check.To = DateTime.Now.ToString("HH:mm:ss");
+                                var period = Convert.ToDateTime(check.To).Subtract(Convert.ToDateTime(check.From));
+                                check.PeriodTime = period.ToString();
+                                await db.SaveChangesAsync();
+                                _id1 = idMax + 1;
+                            }
+                        }
+                        db.Add(new ThoiGianChayMay01 { Ca = CaLamViec.Instance().CaHienTai, Date = DateTime.Now.ToString("dd/MM/yyyy"), From = DateTime.Now.ToString("HH:mm:ss") });
+                        await db.SaveChangesAsync();
+                    }
+                }
             }
             else if (value.DIVal[1].Val == 1)
             {
                 _Machine01.MachineState = Machine.Machine3State.STOPPING;
+
+                if (!_flagDung01)
+                {
+                    using (var db = new DbScadaContext())
+                    {
+                        var check = db.ThoiGianChayMay01
+                            .FirstOrDefault(x => x.ID == _id1);
+                        if (check != null)
+                        {
+                            check.To = DateTime.Now.ToString("HH:mm:ss");
+                            var period = Convert.ToDateTime(check.To).Subtract(Convert.ToDateTime(check.From));
+                            check.PeriodTime = period.ToString();
+
+                            await db.SaveChangesAsync();
+                            _id1++;
+                        }
+                    }
+                }
+                if (!_flagDung01)
+                {
+                    _flagDung01 = true;
+                    _flagChay01 = false;
+                    using (var db = new DbScadaContext())
+                    {
+                        db.Add(new ThoiGianDungMay01 { Ca = CaLamViec.Instance().CaHienTai, Date = DateTime.Now.ToString("dd/MM/yyyy"), From = DateTime.Now.ToString("HH:mm:ss"), Reason = "Dừng Máy" });
+                        await db.SaveChangesAsync();
+                    }
+                }
+
             }
             else if (value.DIVal[2].Val == 1)
             {
                 _Machine01.MachineState = Machine.Machine3State.FAILING;
+                if (!_flagDung01)
+                {
+                    using (var db = new DbScadaContext())
+                    {
+                        var check = db.ThoiGianChayMay01
+                            .FirstOrDefault(x => x.ID == _id1);
+                        if (check != null)
+                        {
+                            check.To = DateTime.Now.ToString("HH:mm:ss");
+                            var period = Convert.ToDateTime(check.To).Subtract(Convert.ToDateTime(check.From));
+                            check.PeriodTime = period.ToString();
+
+                            await db.SaveChangesAsync();
+                            _id1++;
+                        }
+                    }
+                }
+                if (!_flagDung01)
+                {
+                    _flagDung01 = true;
+                    _flagChay01 = false;
+                    using (var db = new DbScadaContext())
+                    {
+                        db.Add(new ThoiGianDungMay01 { Ca = CaLamViec.Instance().CaHienTai, Date = DateTime.Now.ToString("dd/MM/yyyy"), From = DateTime.Now.ToString("HH:mm:ss"), Reason = "Dừng Máy" });
+                        await db.SaveChangesAsync();
+                    }
+                }
             }
             else
             {
@@ -110,6 +245,33 @@ namespace SCADA_IOT_CompanyBBS
             else
             {
                 _Machine01.DoorState = Machine.MachineDoorStatus.CLOSE;
+            }
+
+            //máy 2
+
+            if (value.DIVal[4].Val == 1)
+            {
+                _Machine02.MachineState = Machine.Machine3State.RUNNING;
+            }
+            else if (value.DIVal[5].Val == 1)
+            {
+                _Machine02.MachineState = Machine.Machine3State.STOPPING;
+            }
+            else if (value.DIVal[6].Val == 1)
+            {
+                _Machine02.MachineState = Machine.Machine3State.FAILING;
+            }
+            else
+            {
+                _Machine02.MachineState = Machine.Machine3State.NONE;
+            }
+            if (value.DIVal[7].Val == 0)
+            {
+                _Machine02.DoorState = Machine.MachineDoorStatus.OPEN;
+            }
+            else
+            {
+                _Machine02.DoorState = Machine.MachineDoorStatus.CLOSE;
             }
         }
 
@@ -135,52 +297,63 @@ namespace SCADA_IOT_CompanyBBS
             this.Close();
         }
 
+        private void EventEscPush(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void Viewbox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Machines.wdMachineDetail wdDetail = new Machines.wdMachineDetail();
-            wdDetail.Show();
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            var x = sender as CheckBox;
-            switch (x.Name)
+            var x = sender as Viewbox;
+            switch (x.Tag.ToString())
             {
-                case "chbGreen":
-                    MachineCollection[0].MachineState = Machine.Machine3State.RUNNING;
-                    MachineCollection[0].DoorState = Machine.MachineDoorStatus.CLOSE;
-                    lblWarning.BeginStoryboard(FindResource("FlashMe") as Storyboard);
+                case "1":
+                    Machine.NameMachine = Machine.ListMachine.MACHINE01;
                     break;
-                case "chbYellow":
-                    MachineCollection[0].MachineState = Machine.Machine3State.STOPPING;
+                case "2":
+                    Machine.NameMachine = Machine.ListMachine.MACHINE02;
                     break;
-                case "chbRed":
-                    MachineCollection[0].MachineState = Machine.Machine3State.FAILING;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    break;
+                case "7":
+                    break;
+                case "8":
+                    break;
+                case "9":
+                    break;
+                case "10":
+                    break;
+                case "11":
+                    break;
+                case "12":
+                    break;
+                case "13":
+                    break;
+                case "14":
                     break;
                 default:
                     break;
             }
+            wdMachineDetail wd = new wdMachineDetail();
+            wd.ShowDialog();
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void WdSCADA_Loaded(object sender, RoutedEventArgs e)
         {
-            var x = sender as CheckBox;
-            switch (x.Name)
-            {
-                case "chbGreen":
-                    MachineCollection[0].MachineState = Machine.Machine3State.STOPPING;
-                    MachineCollection[0].DoorState = Machine.MachineDoorStatus.OPEN;
+            lblMachine01.Content = Machine.ListMachine.MACHINE01.ToString();
+            lblMachine02.Content = Machine.ListMachine.MACHINE02.ToString();
 
-                    break;
-                case "chbYellow":
-                    MachineCollection[0].MachineState = Machine.Machine3State.STOPPING;
-                    break;
-                case "chbRed":
-                    MachineCollection[0].MachineState = Machine.Machine3State.STOPPING;
-                    break;
-                default:
-                    break;
-            }
+            //using (var db = new DbScadaContext())
+            //{
+            //    var lastId = db.ThoiGianChayMay01
+            //        .Max(x => x.ID);
+            //}
         }
     }
 }
