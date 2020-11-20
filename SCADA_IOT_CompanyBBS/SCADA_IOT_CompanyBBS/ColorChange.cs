@@ -59,15 +59,18 @@ namespace SCADA_IOT_CompanyBBS
         }
     }
 
-    public class FailingColor : IValueConverter
+    public class DIColor : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((int)value == 2)
+            if (value is Machine.Machine3State)
             {
-                return Brushes.Red;
+                if ((Machine.Machine3State)value == Machine.Machine3State.RUNNING)
+                {
+                    return new SolidColorBrush(Color.FromRgb(100, 243, 106));
+                }
             }
-            return Brushes.Gray;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

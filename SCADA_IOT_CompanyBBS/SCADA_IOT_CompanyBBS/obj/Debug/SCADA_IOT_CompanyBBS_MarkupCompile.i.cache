@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\
+D:\Local Disk F_742018351\RAV\IOT_SCADA_CongTyBBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\obj\Debug\
 SCADA_IOT_CompanyBBS
 none
 false
 DEBUG;TRACE
-D:\RAV\Project IOT SCADA CongTy BBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\App.xaml
+D:\Local Disk F_742018351\RAV\IOT_SCADA_CongTyBBS\SCADA_IOT_CompanyBBS\SCADA_IOT_CompanyBBS\App.xaml
 6545804654
-3772689972
-26-614498454
-531341541364
+3-1244647876
+26-2043406522
+156-1590467242
 SCADA.xaml;ResourcesDictionary\RecDictionary01.xaml;SCADA02.xaml;UserControlMenuItem.xaml;wdChonCa.xaml;wdMachineDetail.xaml;
 
-False
+True
 

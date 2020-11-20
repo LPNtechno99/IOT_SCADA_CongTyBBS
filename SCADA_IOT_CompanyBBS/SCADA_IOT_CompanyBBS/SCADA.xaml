@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:SCADA_IOT_CompanyBBS"
         mc:Ignorable="d"
         Title="SCADA-IOT" Height="980" Width="1920" WindowStartupLocation="CenterScreen"
-        x:Name="wdSCADA" Loaded="WdSCADA_Loaded">
+        x:Name="wdSCADA" Loaded="WdSCADA_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <local:ColorMachineState x:Key="ColorMachineState"/>
         <local:ColorDoorState x:Key="ColorDoorState"/>
-        <local:FailingColor x:Key="FailingColor"/>
+        <local:DIColor x:Key="DIColor"/>
 
         <RoutedUICommand x:Key="myCommandEsc" Text="text"/>
     </Window.Resources>

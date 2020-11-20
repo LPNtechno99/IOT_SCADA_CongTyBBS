@@ -24,20 +24,19 @@ namespace SCADA_IOT_CompanyBBS
         public wdMachineDetail()
         {
             InitializeComponent();
-
-            this.lblStatus.DataContext = SCADA._Machine01;
-            this.lblStatusDoor.DataContext = SCADA._Machine02;
         }
         TimeSpan timeSpan1;
         TimeSpan timeSpan2;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lblMachineName.Content = Machine.NameMachine;
+            
             lblCaHienTai1.Content = CaLamViec.Instance().CaHienTai;
             lblCaHienTai2.Content = CaLamViec.Instance().CaHienTai;
             switch (Machine.NameMachine)
             {
                 case Machine.ListMachine.MACHINE01:
+                    grbMachine.Header = "TRẠNG THÁI MÁY 01";
+                    this.DataContext = SCADA._Machine01;
                     using (var db = new DbScadaContext())
                     {
                         var thoigianchaymay01 = db.ThoiGianChayMay01.ToList();
@@ -91,6 +90,12 @@ namespace SCADA_IOT_CompanyBBS
                     }
                         break;
                 case Machine.ListMachine.MACHINE02:
+                    grbMachine.Header = "TRẠNG THÁI MÁY 02";
+                    this.DataContext = SCADA._Machine02;
+                    tb0.Text = "DI4";
+                    tb1.Text = "DI5";
+                    tb2.Text = "DI6";
+                    tb3.Text = "DI7";
                     break;
                 case Machine.ListMachine.MACHINE03:
                     break;
